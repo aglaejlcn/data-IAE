@@ -29,7 +29,7 @@
     html{scroll-behavior:smooth;scroll-padding-top:95px}body{background:radial-gradient(ellipse at 93% 22%,rgba(244,191,88,.12),transparent 25%),var(--paper)}
     .hero{background:linear-gradient(118deg,#14213e 0%,#283969 54%,#65528f 100%);padding-top:30px;padding-bottom:53px}
     .hero:after{width:520px;height:520px;right:6%;top:-300px;border-color:rgba(255,255,255,.14);box-shadow:0 0 0 52px rgba(244,191,88,.09),0 0 0 108px rgba(255,255,255,.04)}
-    .source-pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+    .source-pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);backdrop-filter:blur(8px)}.hero-status{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;position:relative;z-index:1}.refresh-pill{font-size:11px;color:#c1cddd;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);padding:7px 11px;border-radius:99px;white-space:nowrap;font-variant-numeric:tabular-nums}
     h1{animation:heroIn .75s cubic-bezier(.2,.75,.25,1) both}.hero p{font-size:17px}.hero-kicker{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.09);color:#f8d88f;border-radius:99px;padding:7px 12px;font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1;margin-top:26px}.hero-kicker:before{content:"";width:7px;height:7px;background:#f4bf58;border-radius:50%;box-shadow:0 0 0 4px rgba(244,191,88,.18)}
     .shell{padding-bottom:90px}.jump-nav{position:sticky;top:0;z-index:15;display:flex;gap:8px;overflow-x:auto;padding:11px 28px;margin:0 -28px;background:rgba(247,244,239,.91);backdrop-filter:blur(14px);border-bottom:1px solid rgba(223,216,207,.85)}.jump-nav a{color:#5c6880;text-decoration:none;font-weight:700;font-size:12px;padding:8px 13px;border-radius:99px;white-space:nowrap;transition:background .2s,color .2s,transform .2s}.jump-nav a:hover,.jump-nav a.active{background:#e4e9fb;color:#354fae;transform:translateY(-1px)}
     .toolbar{margin-top:14px;background:rgba(255,255,252,.94);border-color:#e6ded3;border-radius:20px;box-shadow:0 12px 32px rgba(44,48,80,.08)}.control label{color:#7a6c68}.control input,.control select{border-color:#e4ded6;border-radius:11px;background:#fffefa}.control input:focus,.control select:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(68,103,213,.13)}.reset{background:#f5eee4;border-color:#ebdfd0;color:#765642;font-weight:700;transition:transform .2s,background .2s}.reset:hover{background:#f2e2ce;transform:translateY(-1px)}
@@ -52,7 +52,7 @@
 <body>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="hero">
-  <div class="topline"><span class="brand">Observatoire des métiers</span><span class="source-pill" id="sourceDate">Chargement des données…</span></div>
+  <div class="topline"><span class="brand">Observatoire des métiers</span><div class="hero-status"><span class="source-pill" id="sourceDate">Chargement des données…</span><span class="refresh-pill" id="lastRefresh" data-updated-at="">Dernier rafraîchissement automatique : en attente du premier workflow</span></div></div>
   <span class="hero-kicker">Tableau de bord interactif · Marché français</span>
   <h1>Le marché des métiers<br>marketing & digital</h1>
   <p>Une lecture des offres actives : contrats, intitulés recherchés et salaires affichés. Filtrez les métiers pour faire apparaître les tendances utiles à votre oral.</p>

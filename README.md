@@ -6,13 +6,13 @@ Site statique interactif construit à partir de `resume.json` (offres France Tra
 
 Le script `enrich_offres.py` interroge l'API par nom d'entreprise, vérifie le département et privilégie une correspondance avec la commune de l'offre. Il conserve toutes les offres dans `offres_enrichies.json` et génère `enriched-data.js`, fichier compact chargé par `index.html`. Les offres sans nom ou sans correspondance restent visibles avec leur statut, sans inventer d'identifiant.
 
-Pour lancer l'enrichissement manuellement avec Python 3.10 ou plus récent :
+Pour actualiser les données et le badge manuellement avec Python 3.10 ou plus récent :
 
 ```sh
-python3 enrich_offres.py
+python3 update_data.py
 ```
 
-Le script n'utilise que la bibliothèque standard Python. Si `python3` affiche une erreur indiquant que les outils développeur Xcode sont absents, lancez `xcode-select --install` dans le Terminal du Mac, puis vérifiez avec `python3 --version`.
+`update_data.py` lance `enrich_offres.py`, puis inscrit l'heure locale de Paris dans le badge de `index.html`. Le script n'utilise que la bibliothèque standard Python. Si `python3` affiche une erreur indiquant que les outils développeur Xcode sont absents, lancez `xcode-select --install` dans le Terminal du Mac, puis vérifiez avec `python3 --version`.
 
 ## Ouvrir le tableau de bord
 
@@ -28,7 +28,7 @@ Puis ouvrez <http://localhost:8000>.
 
 ## Actualisation et publication
 
-Le workflow `.github/workflows/update.yml` est planifié tous les jours à 05:00 UTC. Il réinterroge Recherche d'entreprises pour les dénominations de `resume.json`, actualise les fichiers d'enrichissement, enregistre les changements et publie le site sur GitHub Pages. Il peut aussi être lancé manuellement depuis **Actions → Actualiser les données et publier le tableau de bord → Run workflow**.
+Le workflow `.github/workflows/update.yml` est planifié tous les jours à 05:00 UTC. Il exécute `update_data.py`, réinterroge Recherche d'entreprises pour les dénominations de `resume.json`, met à jour le badge, enregistre les changements et publie le site sur GitHub Pages. Il peut aussi être lancé manuellement depuis **Actions → Actualiser les données et publier le tableau de bord → Run workflow**.
 
 Le workflow Pages `.github/workflows/pages.yml` publie également le site après les changements poussés sur `main`. Dans les réglages du dépôt GitHub, configurez **Settings → Pages → Build and deployment → GitHub Actions**.
 
