@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
+<rect width="1280" height="820" fill="#f7f8fa"/>
+<text x="72" y="76" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#172b4d">Répartition des offres par type de contrat</text>
+<text x="72" y="116" font-family="Arial,sans-serif" font-size="18" fill="#52647a">France · 3 280 offres actives · données au 28 septembre 2026</text>
+<text x="72" y="165" font-family="Arial,sans-serif" font-size="15" fill="#69788c">TYPE DE CONTRAT</text>
+<text x="510" y="165" font-family="Arial,sans-serif" font-size="15" fill="#69788c">PART DES OFFRES</text>
+<g stroke="#dce3eb" stroke-width="1">
+<line x1="510" y1="188" x2="510" y2="700"/><line x1="640" y1="188" x2="640" y2="700"/><line x1="770" y1="188" x2="770" y2="700"/><line x1="900" y1="188" x2="900" y2="700"/><line x1="1030" y1="188" x2="1030" y2="700"/><line x1="1160" y1="188" x2="1160" y2="700"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="14" fill="#69788c" text-anchor="middle"><text x="510" y="724">0%</text><text x="640" y="724">10%</text><text x="770" y="724">20%</text><text x="900" y="724">30%</text><text x="1030" y="724">40%</text><text x="1160" y="724">50%</text></g>
+<g font-family="Arial,sans-serif" font-size="19" fill="#24364b">
+<text x="72" y="226">CDI</text><text x="72" y="290">CDD</text><text x="72" y="354">Intérim</text><text x="72" y="418">Franchise</text><text x="72" y="482">Profession libérale</text><text x="72" y="546">Profession commerciale</text><text x="72" y="610">Saisonnier</text><text x="72" y="674">CDI de chantier</text>
+</g>
+<g fill="#dce5f0"><rect x="510" y="197" width="650" height="38" rx="8"/><rect x="510" y="261" width="650" height="38" rx="8"/><rect x="510" y="325" width="650" height="38" rx="8"/><rect x="510" y="389" width="650" height="38" rx="8"/><rect x="510" y="453" width="650" height="38" rx="8"/><rect x="510" y="517" width="650" height="38" rx="8"/><rect x="510" y="581" width="650" height="38" rx="8"/><rect x="510" y="645" width="650" height="38" rx="8"/></g>
+<g fill="#2463a6"><rect x="510" y="197" width="662.7" height="38" rx="8"/><rect x="510" y="261" width="391.2" height="38" rx="8"/><rect x="510" y="325" width="109.0" height="38" rx="8"/><rect x="510" y="389" width="76.4" height="38" rx="8"/><rect x="510" y="453" width="38.5" height="38" rx="8"/><rect x="510" y="517" width="19.0" height="38" rx="8"/><rect x="510" y="581" width="2.34" height="38" rx="2"/><rect x="510" y="645" width="0.78" height="38" rx="1"/></g>
+<g font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#24364b"><text x="1190" y="224">50,98 % · 1 672</text><text x="919" y="288">30,09 % · 987</text><text x="637" y="352">8,38 % · 275</text><text x="604" y="416">5,88 % · 193</text><text x="567" y="480">2,96 % · 97</text><text x="538" y="544">1,46 % · 48</text><text x="523" y="608">0,18 % · 6</text><text x="523" y="672">0,06 % · 2</text></g>
+<text x="72" y="778" font-family="Arial,sans-serif" font-size="14" fill="#69788c">Source : resume.json · Pourcentage calculé sur les 3 280 offres de la base</text>
+</svg>
