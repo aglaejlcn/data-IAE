@@ -15,7 +15,7 @@ BASE = Path(__file__).resolve().parent
 INDEX = BASE / "index.html"
 ENRICHMENT_SCRIPT = BASE / "enrich_offres.py"
 BADGE_PATTERN = re.compile(
-    r'(<span class="refresh-pill" id="lastRefresh" data-updated-at=")[^"]*(">)'
+    r'(<span class="source-pill" id="last-update" data-updated-at=")[^"]*(">)'
     r"Dernier rafraîchissement automatique : .*?(</span>)",
     flags=re.DOTALL,
 )
@@ -40,7 +40,7 @@ def main() -> int:
         count=1,
     )
     if replacements != 1:
-        print("Le badge lastRefresh est absent ou son balisage a changé.", file=sys.stderr)
+        print("Le badge last-update est absent ou son balisage a changé.", file=sys.stderr)
         return 3
 
     INDEX.write_text(updated_html, encoding="utf-8")

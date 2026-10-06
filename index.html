@@ -7,9 +7,6 @@
   <meta name="description" content="Tableau de bord interactif du marché de l'emploi marketing et digital, construit à partir des offres France Travail.">
   <title>Le marché des métiers marketing — Tableau de bord</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <script src="./resume-data.js"></script>
-  <script src="./enriched-data.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js" onerror="window.CHART_JS_LOAD_ERROR=true"></script>
   <style>
     :root{--ink:#16243a;--muted:#69798e;--paper:#f4f6f8;--card:#fff;--line:#e2e8ef;--blue:#255da8;--blue2:#7ca8dc;--mint:#d9eee8;--gold:#f1c56c;--coral:#df785e;--navy:#101b32;--shadow:0 12px 36px rgba(21,40,68,.07)}
     *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -52,7 +49,10 @@
 <body>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="hero">
-  <div class="topline"><span class="brand">Observatoire des métiers</span><div class="hero-status"><span class="source-pill" id="last-update">Dernière mise à jour : chargement…</span><span class="refresh-pill" id="lastRefresh" data-updated-at="">Dernier rafraîchissement automatique : en attente du premier workflow</span></div></div>
+  <div class="topline"><span class="brand">Observatoire des métiers</span><div class="hero-status"><span class="source-pill" id="last-update" data-updated-at="">Dernier rafraîchissement automatique : en attente du premier workflow</span></div></div>
+  <script>
+    (()=>{const now=new Date(),pad=value=>String(value).padStart(2,'0'),stamp=`${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()} à ${pad(now.getHours())}:${pad(now.getMinutes())}`,node=document.getElementById('last-update');node.textContent=`Dernier rafraîchissement automatique : ${stamp}`;node.dataset.updatedAt=now.toISOString()})();
+  </script>
   <span class="hero-kicker">Tableau de bord interactif · Marché français</span>
   <h1>Le marché des métiers<br>marketing & digital</h1>
   <p>Une lecture des offres actives : contrats, intitulés recherchés et salaires affichés. Filtrez les métiers pour faire apparaître les tendances utiles à votre oral.</p>
@@ -99,11 +99,12 @@
 <button class="back-top" id="backTop" type="button" aria-label="Retour en haut" title="Retour en haut">↑</button>
 <dialog class="chart-dialog" id="chartDialog" aria-label="Graphique agrandi"><div class="dialog-head"><div><h2 id="dialogTitle">Graphique</h2><div class="dialog-caption">Survolez une barre pour lire sa valeur exacte.</div></div><button class="close-chart" id="closeChart" type="button" aria-label="Fermer le graphique agrandi" title="Fermer">×</button></div><div class="dialog-plot" id="dialogPlot"></div><div class="dialog-hint">Appuyez sur Échap ou sur × pour revenir au tableau de bord.</div></dialog>
 <div id="loadError" class="error hidden" role="alert"></div>
+<script src="./resume-data.js"></script>
+<script src="./enriched-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" onerror="window.CHART_JS_LOAD_ERROR=true"></script>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const now=new Date(),pad=(value)=>String(value).padStart(2,'0');
-  $('last-update').textContent=`Dernière mise à jour : ${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()} à ${pad(now.getHours())}:${pad(now.getMinutes())}`;
   const money = (n, digits=0) => new Intl.NumberFormat('fr-FR',{maximumFractionDigits:digits}).format(n) + ' €';
   const number = (n) => new Intl.NumberFormat('fr-FR').format(n);
   const percent = (n) => new Intl.NumberFormat('fr-FR',{style:'percent',maximumFractionDigits:1}).format(n);
