@@ -52,7 +52,7 @@
 <body>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="hero">
-  <div class="topline"><span class="brand">Observatoire des métiers</span><div class="hero-status"><span class="source-pill" id="sourceDate">Chargement des données…</span><span class="refresh-pill" id="lastRefresh" data-updated-at="">Dernier rafraîchissement automatique : en attente du premier workflow</span></div></div>
+  <div class="topline"><span class="brand">Observatoire des métiers</span><div class="hero-status"><span class="source-pill" id="last-update">Dernière mise à jour : chargement…</span><span class="refresh-pill" id="lastRefresh" data-updated-at="">Dernier rafraîchissement automatique : en attente du premier workflow</span></div></div>
   <span class="hero-kicker">Tableau de bord interactif · Marché français</span>
   <h1>Le marché des métiers<br>marketing & digital</h1>
   <p>Une lecture des offres actives : contrats, intitulés recherchés et salaires affichés. Filtrez les métiers pour faire apparaître les tendances utiles à votre oral.</p>
@@ -102,6 +102,8 @@
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
+  const now=new Date(),pad=(value)=>String(value).padStart(2,'0');
+  $('last-update').textContent=`Dernière mise à jour : ${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()} à ${pad(now.getHours())}:${pad(now.getMinutes())}`;
   const money = (n, digits=0) => new Intl.NumberFormat('fr-FR',{maximumFractionDigits:digits}).format(n) + ' €';
   const number = (n) => new Intl.NumberFormat('fr-FR').format(n);
   const percent = (n) => new Intl.NumberFormat('fr-FR',{style:'percent',maximumFractionDigits:1}).format(n);
@@ -201,7 +203,7 @@
     dataRef=data;allOffers=data.offres||[];for(const m of data.metiers||[])groupByRome.set(m.code,m.groupe);
     const groups=[...new Set((data.metiers||[]).map(m=>m.groupe))].sort((a,b)=>a.localeCompare(b,'fr'));for(const g of groups){const opt=document.createElement('option');opt.value=g;opt.textContent=g;$('groupFilter').append(opt)}
     const contracts=Object.entries(data.contrats||{});for(const [code,label] of contracts){const opt=document.createElement('option');opt.value=code;opt.textContent=label;$('contractFilter').append(opt)}
-    const date=data.date?new Date(`${data.date}T12:00:00`):null;const dateLabel=date?new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'long',year:'numeric'}).format(date):'date indisponible';$('sourceDate').textContent=`Données du ${dateLabel}`;$('footerDate').textContent=`Extraction du ${dateLabel}`;
+    const date=data.date?new Date(`${data.date}T12:00:00`):null;const dateLabel=date?new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'long',year:'numeric'}).format(date):'date indisponible';$('footerDate').textContent=`Extraction du ${dateLabel}`;
     $('search').addEventListener('input',update);$('groupFilter').addEventListener('change',update);$('contractFilter').addEventListener('change',update);$('skillsMode').addEventListener('change',()=>updateSkillsChart(getFiltered()));$('reset').addEventListener('click',()=>{$('search').value='';$('groupFilter').value='';$('contractFilter').value='';update()});update();
     document.body.classList.add('motion-ready');
     const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.12});
